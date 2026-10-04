@@ -3,170 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>uiprompt.app — UI skeleton</title>
-<meta name="description" content="UI skeleton for uiprompt.app, planned with UIPrompt.">
+<title>uiprompt.app</title>
 <meta name="generator" content="UIPrompt">
 <link rel="icon" href="data:,">
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;height:100%}
-body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#18181b;background:#e8e8ec;display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
-.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:12px 20px;background:#fff;border-bottom:1px solid #e4e4e7;z-index:2}
-.bar h1{margin:0;font-size:17px;font-weight:700}
-.bar p{margin:2px 0 0;font-size:12px;color:#71717a}
-.hint{font-size:12px;color:#a1a1aa}
-.actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-.toggle{display:inline-flex;padding:3px;border-radius:999px;background:#f4f4f5;border:1px solid #e4e4e7}
-.toggle button{border:0;background:transparent;padding:6px 14px;border-radius:999px;font:inherit;font-size:13px;font-weight:600;color:#52525b;cursor:pointer}
-.toggle button[aria-pressed="true"]{background:#fff;color:#18181b;box-shadow:0 1px 2px rgba(0,0,0,.08)}
-.link{font-size:13px;font-weight:600;color:#2c7ef8;text-decoration:none;padding:6px 10px}
-.link:hover{text-decoration:underline}
-main{position:relative;flex:1;min-height:0}
-.dots{background-color:#e8e8ec;background-image:radial-gradient(circle,rgba(0,0,0,.12) 1px,transparent 1px);background-size:24px 24px}
-.canvas{position:absolute;inset:0;overflow:hidden;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
-.canvas.dragging{cursor:grabbing}
-.stage{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
-.arrows{position:absolute;inset:0;overflow:visible;pointer-events:none}
-.frame{position:absolute}
-.label{position:absolute;left:0;top:-28px;height:24px;max-width:100%;display:inline-flex;align-items:center;gap:6px;padding:0 8px;border-radius:4px;background:#2c2c2f;color:#a4a8b8;font-size:12px;font-weight:600;white-space:nowrap}
-.label svg{flex:none}
-.label-name{overflow:hidden;text-overflow:ellipsis}
-.label-count{margin-left:4px;font-size:10px;opacity:.6}
-.body{position:absolute;inset:0;background:#fff;border:1px solid rgba(212,212,216,.6);border-radius:2px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+html,body{margin:0;background:#fff}
+body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#09090b}
+.page-fit{margin:0 auto;overflow:hidden}
+.page-col{display:flex;flex-direction:column;align-items:center;transform-origin:0 0}
+.frame{position:relative;flex:none;background:#fff;border:1px solid rgba(212,212,216,.6);border-bottom:0;overflow:hidden}
+.frame:last-child{border-bottom:1px solid rgba(212,212,216,.6)}
 .block,.group{position:absolute;border-radius:6px}
 .block{overflow:hidden;background:#f4f4f5;border:1px solid rgba(228,228,231,.6)}
 .title{margin:0;padding:8px 12px 0;font-size:13px;font-weight:600;line-height:1.2;color:#3f3f46;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .summary{margin:0;padding:4px 12px 8px;font-size:11px;line-height:1.35;color:#a1a1aa;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.controls{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;align-items:center;gap:2px;padding:4px;border-radius:12px;background:#242426;border:1px solid #383838;box-shadow:0 8px 24px rgba(0,0,0,.25);cursor:default}
-.controls button{min-width:32px;height:32px;padding:0 10px;border:0;border-radius:8px;background:transparent;color:#a4a8b8;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
-.controls button:hover{background:#2c2c2f;color:#f3f3ee}
-.readout{min-width:52px;text-align:center;font-size:12px;font-weight:600;color:#f3f3ee;font-variant-numeric:tabular-nums}
-.page{position:absolute;inset:0;overflow-x:hidden;overflow-y:auto;padding:40px 24px}
-.page-fit{position:relative;margin:0 auto}
-.page-col{display:flex;flex-direction:column;align-items:center;transform-origin:0 0}
-.pframe{position:relative;flex:none;background:#fff;color:#09090b;border:1px solid rgba(212,212,216,.6);border-bottom:0;overflow:hidden}
-.pframe:last-child{border-bottom:1px solid rgba(212,212,216,.6)}
-.tabs{display:flex;flex-wrap:wrap;gap:4px}
-.tabs button{border:0;background:transparent;padding:6px 10px;border-radius:8px;font:inherit;font-size:13px;font-weight:600;color:#71717a;cursor:pointer}
-.tabs button[aria-current="page"]{background:#f4f4f5;color:#18181b}
-.empty{margin:80px auto;text-align:center;font-size:14px;color:#71717a}
-footer{padding:12px 20px;text-align:center;font-size:13px;color:#52525b;background:#fff;border-top:1px solid #e4e4e7}
-footer a{color:#18181b;font-weight:700}
-@media (max-width:640px){.hint{display:none}}
-[hidden]{display:none!important}
 </style>
-<noscript><style>.page{overflow:auto}.canvas{overflow:auto;cursor:auto}.controls{display:none}</style></noscript>
 </head>
 <body>
-<header class="bar">
-<div><h1>uiprompt.app</h1><p>UI skeleton · updated Oct 4, 2026</p></div>
-
-<div class="actions"><span id="hint" class="hint" hidden>Drag to pan · ⌘/Ctrl + scroll to zoom</span><a class="link" href="brief.md">Agent brief</a><div class="toggle" role="group" aria-label="View"><button type="button" data-view="page" aria-pressed="true">Page</button><button type="button" data-view="canvas" aria-pressed="false">Canvas</button></div></div>
-</header>
-<main>
-<section id="page" class="page dots" aria-label="Page view"><div class="page-fit" data-width="848" data-height="548"><div class="page-col"><div class="pframe" style="width:848px;height:548px"><div class="group" style="left:24px;top:24px;width:800px;height:500px"><div class="block" style="left:40px;top:40px;width:720px;height:50px"><p class="title">Section Heading</p></div><div class="group" style="left:40px;top:120px;width:720px;height:340px"><div class="block" style="left:0px;top:0px;width:220px;height:150px"><p class="title">Feature 1</p></div><div class="block" style="left:250px;top:0px;width:220px;height:150px"><p class="title">Feature 2</p></div><div class="block" style="left:500px;top:0px;width:220px;height:150px"><p class="title">Feature 3</p></div></div></div></div></div></div></section>
-<section id="canvas" class="canvas dots" aria-label="Canvas view" hidden>
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#2c7ef8"/></marker></defs></svg>
-<div class="stage" data-width="976" data-height="704" style="width:976px;height:704px"><svg class="arrows" width="976" height="704" aria-hidden="true"><g transform="translate(429 390)"></g></svg><div class="frame" style="left:64px;top:92px;width:848px;height:548px"><div class="label"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/></svg><span class="label-name">Frame 1</span><span class="label-count">1</span></div><div class="body"><div class="group" style="left:24px;top:24px;width:800px;height:500px"><div class="block" style="left:40px;top:40px;width:720px;height:50px"><p class="title">Section Heading</p></div><div class="group" style="left:40px;top:120px;width:720px;height:340px"><div class="block" style="left:0px;top:0px;width:220px;height:150px"><p class="title">Feature 1</p></div><div class="block" style="left:250px;top:0px;width:220px;height:150px"><p class="title">Feature 2</p></div><div class="block" style="left:500px;top:0px;width:220px;height:150px"><p class="title">Feature 3</p></div></div></div></div></div></div>
-<div class="controls" role="toolbar" aria-label="Zoom"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><span id="zoom-readout" class="readout">100%</span><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-zoom="fit">Fit</button></div>
-</section>
-</main>
-<footer>Made with <a href="http://127.0.0.1:3000/?utm_source=github_pages&amp;utm_medium=skeleton&amp;utm_campaign=share">UIPrompt</a> — plan the UI, then hand the brief to your AI coding agent.</footer>
+<div class="page-fit"><div class="page-col" data-width="848" data-height="548"><div class="frame" style="width:848px;height:548px"><div class="group" style="left:24px;top:24px;width:800px;height:500px"><div class="block" style="left:40px;top:40px;width:720px;height:50px"><p class="title">Section Heading</p></div><div class="group" style="left:40px;top:120px;width:720px;height:340px"><div class="block" style="left:0px;top:0px;width:220px;height:150px"><p class="title">Feature 1</p></div><div class="block" style="left:250px;top:0px;width:220px;height:150px"><p class="title">Feature 2</p></div><div class="block" style="left:500px;top:0px;width:220px;height:150px"><p class="title">Feature 3</p></div></div></div></div></div></div>
 <script>
 (function(){
-  var pageView=document.getElementById('page');
-  var canvas=document.getElementById('canvas');
-  var readout=document.getElementById('zoom-readout');
-  var hint=document.getElementById('hint');
-  var cols=[].slice.call(document.querySelectorAll('.page-fit'));
-  var stages=[].slice.call(document.querySelectorAll('.stage'));
-  var tabs=[].slice.call(document.querySelectorAll('[data-page-tab]'));
-  var views=[].slice.call(document.querySelectorAll('[data-view]'));
-  var current=0,view='page';
-  var MIN=0.1,MAX=2,PAD=40,CONTROLS=64;
-  var z=1,x=0,y=0,moved=false,drag=null;
-
-  // Page view: scale each page column down to the available width.
-  function fitPage(){
-    var fit=cols[current];if(!fit)return;
-    var col=fit.firstElementChild;
-    var w=Number(fit.dataset.width),h=Number(fit.dataset.height);
-    var style=getComputedStyle(pageView);
-    var avail=pageView.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight);
-    var s=Math.min(1,Math.max(0.05,avail/w));
+  var col=document.querySelector('.page-col');if(!col)return;
+  var fit=col.parentNode,w=Number(col.dataset.width),h=Number(col.dataset.height);
+  function apply(){
+    var s=Math.min(1,document.documentElement.clientWidth/w);
     col.style.width=w+'px';col.style.transform='scale('+s+')';
     fit.style.width=Math.round(w*s)+'px';fit.style.height=Math.round(h*s)+'px';
   }
-
-  // Canvas view: pan and zoom like the editor.
-  function stage(){return stages[current];}
-  function apply(){
-    if(!stage())return;
-    stage().style.transform='translate('+x+'px,'+y+'px) scale('+z+')';
-    readout.textContent=Math.round(z*100)+'%';
-  }
-  function fitCanvas(){
-    var r=canvas.getBoundingClientRect(),st=stage();
-    if(!st||!r.width||!r.height)return;
-    var W=Number(st.dataset.width),H=Number(st.dataset.height);
-    z=Math.max(MIN,Math.min(1,(r.width-PAD*2)/W,(r.height-PAD*2-CONTROLS)/H));
-    x=(r.width-W*z)/2;y=Math.max(PAD,(r.height-CONTROLS-H*z)/2);
-    moved=false;apply();
-  }
-  function zoomAt(next,cx,cy){
-    next=Math.min(MAX,Math.max(MIN,next));
-    x=cx-(cx-x)*(next/z);y=cy-(cy-y)*(next/z);z=next;moved=true;apply();
-  }
-  canvas.addEventListener('wheel',function(e){
-    e.preventDefault();
-    var r=canvas.getBoundingClientRect();
-    // Clamp so one mouse-wheel notch zooms gently; trackpad pinch deltas are small anyway.
-    if(e.ctrlKey||e.metaKey){zoomAt(z*Math.exp(-Math.max(-25,Math.min(25,e.deltaY))*0.01),e.clientX-r.left,e.clientY-r.top);}
-    else{x-=e.deltaX;y-=e.deltaY;moved=true;apply();}
-  },{passive:false});
-  canvas.addEventListener('pointerdown',function(e){
-    if(e.button!==0||e.target.closest('.controls'))return;
-    drag={id:e.pointerId,sx:e.clientX,sy:e.clientY,x:x,y:y};
-    canvas.setPointerCapture(e.pointerId);canvas.classList.add('dragging');
-  });
-  canvas.addEventListener('pointermove',function(e){
-    if(!drag||drag.id!==e.pointerId)return;
-    x=drag.x+e.clientX-drag.sx;y=drag.y+e.clientY-drag.sy;moved=true;apply();
-  });
-  function endDrag(e){if(drag&&drag.id===e.pointerId){drag=null;canvas.classList.remove('dragging');}}
-  canvas.addEventListener('pointerup',endDrag);
-  canvas.addEventListener('pointercancel',endDrag);
-  [].forEach.call(document.querySelectorAll('[data-zoom]'),function(button){
-    button.addEventListener('click',function(){
-      var r=canvas.getBoundingClientRect(),a=button.getAttribute('data-zoom');
-      if(a==='in')zoomAt(z*1.25,r.width/2,r.height/2);
-      else if(a==='out')zoomAt(z*0.8,r.width/2,r.height/2);
-      else fitCanvas();
-    });
-  });
-
-  function render(){
-    pageView.hidden=view!=='page';canvas.hidden=view!=='canvas';
-    if(hint)hint.hidden=view!=='canvas';
-    cols.forEach(function(c,i){c.hidden=i!==current;});
-    stages.forEach(function(st,i){st.hidden=i!==current;});
-    tabs.forEach(function(t,i){if(i===current)t.setAttribute('aria-current','page');else t.removeAttribute('aria-current');});
-    views.forEach(function(b){b.setAttribute('aria-pressed',String(b.getAttribute('data-view')===view));});
-    if(view==='page')fitPage();else fitCanvas();
-  }
-  tabs.forEach(function(t,i){
-    t.addEventListener('click',function(){
-      current=i;pageView.scrollTop=0;
-      history.replaceState(null,'','#page-'+(i+1));render();
-    });
-  });
-  views.forEach(function(b){
-    b.addEventListener('click',function(){view=b.getAttribute('data-view');render();});
-  });
-  window.addEventListener('resize',function(){if(view==='page')fitPage();else if(!moved)fitCanvas();});
-  var m=/^#page-(d+)$/.exec(location.hash);
-  if(m&&cols[Number(m[1])-1])current=Number(m[1])-1;
-  render();
+  apply();window.addEventListener('resize',apply);
 })();
 </script>
 </body>

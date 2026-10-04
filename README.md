@@ -6,7 +6,7 @@ Planned with [UIPrompt](http://127.0.0.1:3000/?utm_source=github_readme&utm_medi
 
 ## Files
 
-- `index.html`: the skeleton (Canvas and Flow views), served by GitHub Pages
+- `index.html`: the page, its frames stacked in flow order, served by GitHub Pages
 - `skeleton.json`: screens, sections and connections as data
 - `brief.md`: the full brief to hand to your AI coding agent
 
