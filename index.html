@@ -9,79 +9,134 @@
 <link rel="icon" href="data:,">
 <style>
 *{box-sizing:border-box}
-html,body{margin:0}
-body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#18181b;background:#e8e8ec;background-image:radial-gradient(circle,rgba(0,0,0,.12) 1px,transparent 1px);background-size:24px 24px;min-height:100vh;display:flex;flex-direction:column}
-.bar{position:sticky;top:0;z-index:10;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:14px 24px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid #e4e4e7}
+html,body{margin:0;height:100%}
+body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#18181b;background:#e8e8ec;display:flex;flex-direction:column;height:100vh;height:100dvh;overflow:hidden}
+.bar{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;padding:12px 20px;background:#fff;border-bottom:1px solid #e4e4e7;z-index:2}
 .bar h1{margin:0;font-size:17px;font-weight:700}
 .bar p{margin:2px 0 0;font-size:12px;color:#71717a}
+.hint{font-size:12px;color:#a1a1aa}
 .actions{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .toggle{display:inline-flex;padding:3px;border-radius:999px;background:#f4f4f5;border:1px solid #e4e4e7}
 .toggle button{border:0;background:transparent;padding:6px 14px;border-radius:999px;font:inherit;font-size:13px;font-weight:600;color:#52525b;cursor:pointer}
 .toggle button[aria-pressed="true"]{background:#fff;color:#18181b;box-shadow:0 1px 2px rgba(0,0,0,.08)}
 .link{font-size:13px;font-weight:600;color:#2c7ef8;text-decoration:none;padding:6px 10px}
 .link:hover{text-decoration:underline}
-main{flex:1;padding:24px}
-.viewport{position:relative;margin:0 auto;overflow:hidden}
-.stage{position:absolute;top:0;left:0;transform-origin:0 0}
-.stage svg{position:absolute;inset:0;overflow:visible;pointer-events:none}
+main{position:relative;flex:1;min-height:0}
+.dots{background-color:#e8e8ec;background-image:radial-gradient(circle,rgba(0,0,0,.12) 1px,transparent 1px);background-size:24px 24px}
+.canvas{position:absolute;inset:0;overflow:hidden;touch-action:none;cursor:grab;user-select:none;-webkit-user-select:none}
+.canvas.dragging{cursor:grabbing}
+.stage{position:absolute;top:0;left:0;transform-origin:0 0;will-change:transform}
+.arrows{position:absolute;inset:0;overflow:visible;pointer-events:none}
 .frame{position:absolute}
-.label{position:absolute;left:0;font-size:13px;font-weight:600;color:#52525b;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.body{position:absolute;inset:0;background:#fff;border:1px solid rgba(212,212,216,.6);overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
+.label{position:absolute;left:0;top:-28px;height:24px;max-width:100%;display:inline-flex;align-items:center;gap:6px;padding:0 8px;border-radius:4px;background:#2c2c2f;color:#a4a8b8;font-size:12px;font-weight:600;white-space:nowrap}
+.label svg{flex:none}
+.label-name{overflow:hidden;text-overflow:ellipsis}
+.label-count{margin-left:4px;font-size:10px;opacity:.6}
+.body{position:absolute;inset:0;background:#fff;border:1px solid rgba(212,212,216,.6);border-radius:2px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.06)}
 .block,.group{position:absolute;border-radius:6px}
 .block{overflow:hidden;background:#f4f4f5;border:1px solid rgba(228,228,231,.6)}
 .title{margin:0;padding:8px 12px 0;font-size:13px;font-weight:600;line-height:1.2;color:#3f3f46;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .summary{margin:0;padding:4px 12px 8px;font-size:11px;line-height:1.35;color:#a1a1aa;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.flow{display:flex;flex-direction:column;align-items:center}
+.controls{position:absolute;left:50%;bottom:20px;transform:translateX(-50%);display:flex;align-items:center;gap:2px;padding:4px;border-radius:12px;background:#242426;border:1px solid #383838;box-shadow:0 8px 24px rgba(0,0,0,.25);cursor:default}
+.controls button{min-width:32px;height:32px;padding:0 10px;border:0;border-radius:8px;background:transparent;color:#a4a8b8;font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+.controls button:hover{background:#2c2c2f;color:#f3f3ee}
+.readout{min-width:52px;text-align:center;font-size:12px;font-weight:600;color:#f3f3ee;font-variant-numeric:tabular-nums}
+.flow{position:absolute;inset:0;overflow:auto;padding:40px 24px;display:flex;flex-direction:column;align-items:center}
+.flow-entry{display:flex;flex-direction:column;align-items:flex-start;max-width:100%;flex:none;margin-top:32px}
+.flow-entry:first-child{margin-top:0}
+.flow .label{position:relative;top:0;margin-bottom:8px}
+.flow-item{max-width:100%;overflow-x:auto}
 .flow .frame{position:relative}
 .flow .body{position:relative;height:100%}
-.flow-label{font-size:13px;font-weight:600;color:#52525b;margin:24px 0 6px}
-.flow-label:first-child{margin-top:0}
-.flow-item{max-width:100%;overflow-x:auto}
-footer{padding:16px 24px;text-align:center;font-size:13px;color:#52525b;background:#fff;border-top:1px solid #e4e4e7}
+footer{padding:12px 20px;text-align:center;font-size:13px;color:#52525b;background:#fff;border-top:1px solid #e4e4e7}
 footer a{color:#18181b;font-weight:700}
+@media (max-width:640px){.hint{display:none}}
 [hidden]{display:none!important}
 </style>
+<noscript><style>.canvas{overflow:auto;cursor:auto}.controls{display:none}</style></noscript>
 </head>
 <body>
 <header class="bar">
 <div><h1>uiprompt.app</h1><p>UI skeleton · updated Oct 4, 2026</p></div>
-<div class="actions"><a class="link" href="brief.md">Agent brief</a><div class="toggle" role="group" aria-label="View"><button type="button" data-view="canvas" aria-pressed="true">Canvas</button><button type="button" data-view="flow" aria-pressed="false">Flow</button></div></div>
+<div class="actions"><span class="hint">Drag to pan · ⌘/Ctrl + scroll to zoom</span><a class="link" href="brief.md">Agent brief</a><div class="toggle" role="group" aria-label="View"><button type="button" data-view="canvas" aria-pressed="true">Canvas</button><button type="button" data-view="flow" aria-pressed="false">Flow</button></div></div>
 </header>
 <main>
-<section id="canvas" class="viewport" aria-label="Canvas view">
+<section id="canvas" class="canvas dots" aria-label="Canvas view">
 <div id="stage" class="stage" data-width="976" data-height="704" style="width:976px;height:704px">
-<svg width="976" height="704" aria-hidden="true"><defs><marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#2c7ef8"/></marker></defs><g transform="translate(429 390)"></g></svg>
-<div class="frame" style="left:64px;top:92px;width:848px;height:548px"><div class="label" style="top:-24px;width:848px">Frame 1</div><div class="body"><div class="group" style="left:24px;top:24px;width:800px;height:500px"><div class="block" style="left:40px;top:40px;width:720px;height:50px"><p class="title">Section Heading</p></div><div class="group" style="left:40px;top:120px;width:720px;height:340px"><div class="block" style="left:0px;top:0px;width:220px;height:150px"><p class="title">Feature 1</p></div><div class="block" style="left:250px;top:0px;width:220px;height:150px"><p class="title">Feature 2</p></div><div class="block" style="left:500px;top:0px;width:220px;height:150px"><p class="title">Feature 3</p></div></div></div></div></div>
+<svg class="arrows" width="976" height="704" aria-hidden="true"><defs><marker id="arrow" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto"><polygon points="0 0, 10 3.5, 0 7" fill="#2c7ef8"/></marker></defs><g transform="translate(429 390)"></g></svg>
+<div class="frame" style="left:64px;top:92px;width:848px;height:548px"><div class="label"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/></svg><span class="label-name">Frame 1</span><span class="label-count">1</span></div><div class="body"><div class="group" style="left:24px;top:24px;width:800px;height:500px"><div class="block" style="left:40px;top:40px;width:720px;height:50px"><p class="title">Section Heading</p></div><div class="group" style="left:40px;top:120px;width:720px;height:340px"><div class="block" style="left:0px;top:0px;width:220px;height:150px"><p class="title">Feature 1</p></div><div class="block" style="left:250px;top:0px;width:220px;height:150px"><p class="title">Feature 2</p></div><div class="block" style="left:500px;top:0px;width:220px;height:150px"><p class="title">Feature 3</p></div></div></div></div></div>
 </div>
+<div class="controls" role="toolbar" aria-label="Zoom"><button type="button" data-zoom="out" aria-label="Zoom out">−</button><span id="zoom-readout" class="readout">100%</span><button type="button" data-zoom="in" aria-label="Zoom in">+</button><button type="button" data-zoom="fit">Fit</button></div>
 </section>
-<section id="flow" class="flow" aria-label="Flow view" hidden><div class="flow-label">Frame 1</div><div class="flow-item"><div class="frame" style="width:848px;height:548px"><div class="body"><div class="group" style="left:24px;top:24px;width:800px;height:500px"><div class="block" style="left:40px;top:40px;width:720px;height:50px"><p class="title">Section Heading</p></div><div class="group" style="left:40px;top:120px;width:720px;height:340px"><div class="block" style="left:0px;top:0px;width:220px;height:150px"><p class="title">Feature 1</p></div><div class="block" style="left:250px;top:0px;width:220px;height:150px"><p class="title">Feature 2</p></div><div class="block" style="left:500px;top:0px;width:220px;height:150px"><p class="title">Feature 3</p></div></div></div></div></div></div></section>
+<section id="flow" class="flow dots" aria-label="Flow view" hidden><div class="flow-entry"><div class="label"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="18" height="18" x="3" y="3" rx="2"/></svg><span class="label-name">Frame 1</span><span class="label-count">1</span></div><div class="flow-item"><div class="frame" style="width:848px;height:548px"><div class="body"><div class="group" style="left:24px;top:24px;width:800px;height:500px"><div class="block" style="left:40px;top:40px;width:720px;height:50px"><p class="title">Section Heading</p></div><div class="group" style="left:40px;top:120px;width:720px;height:340px"><div class="block" style="left:0px;top:0px;width:220px;height:150px"><p class="title">Feature 1</p></div><div class="block" style="left:250px;top:0px;width:220px;height:150px"><p class="title">Feature 2</p></div><div class="block" style="left:500px;top:0px;width:220px;height:150px"><p class="title">Feature 3</p></div></div></div></div></div></div></div></section>
 </main>
 <footer>Made with <a href="http://127.0.0.1:3000/?utm_source=github_pages&amp;utm_medium=skeleton&amp;utm_campaign=share">UIPrompt</a> — plan the UI, then hand the brief to your AI coding agent.</footer>
 <script>
 (function(){
-  var viewport=document.getElementById('canvas');
+  var canvas=document.getElementById('canvas');
   var stage=document.getElementById('stage');
-  var w=Number(stage.dataset.width),h=Number(stage.dataset.height);
-  function fit(){
-    var main=document.querySelector('main');var style=getComputedStyle(main);
-    var available=Math.max(160,main.clientWidth-parseFloat(style.paddingLeft)-parseFloat(style.paddingRight));
-    var scale=Math.min(1,available/w);
-    stage.style.transform='scale('+scale+')';
-    viewport.style.width=Math.round(w*scale)+'px';
-    viewport.style.height=Math.round(h*scale)+'px';
+  var readout=document.getElementById('zoom-readout');
+  var W=Number(stage.dataset.width),H=Number(stage.dataset.height);
+  var MIN=0.1,MAX=2,PAD=40,CONTROLS=64;
+  var z=1,x=0,y=0,moved=false,drag=null;
+  function apply(){
+    stage.style.transform='translate('+x+'px,'+y+'px) scale('+z+')';
+    readout.textContent=Math.round(z*100)+'%';
   }
-  fit();
-  window.addEventListener('resize',fit);
-  var buttons=document.querySelectorAll('[data-view]');
-  buttons.forEach(function(button){
+  function fit(){
+    var r=canvas.getBoundingClientRect();
+    if(!r.width||!r.height)return;
+    z=Math.max(MIN,Math.min(1,(r.width-PAD*2)/W,(r.height-PAD*2-CONTROLS)/H));
+    x=(r.width-W*z)/2;
+    y=Math.max(PAD,(r.height-CONTROLS-H*z)/2);
+    moved=false;apply();
+  }
+  function zoomAt(next,cx,cy){
+    next=Math.min(MAX,Math.max(MIN,next));
+    x=cx-(cx-x)*(next/z);y=cy-(cy-y)*(next/z);z=next;moved=true;apply();
+  }
+  function zoomCenter(factor){
+    var r=canvas.getBoundingClientRect();zoomAt(z*factor,r.width/2,r.height/2);
+  }
+  canvas.addEventListener('wheel',function(e){
+    e.preventDefault();
+    var r=canvas.getBoundingClientRect();
+    // Clamp so one mouse-wheel notch zooms gently; trackpad pinch deltas are small anyway.
+    if(e.ctrlKey||e.metaKey){zoomAt(z*Math.exp(-Math.max(-25,Math.min(25,e.deltaY))*0.01),e.clientX-r.left,e.clientY-r.top);}
+    else{x-=e.deltaX;y-=e.deltaY;moved=true;apply();}
+  },{passive:false});
+  canvas.addEventListener('pointerdown',function(e){
+    if(e.button!==0||e.target.closest('.controls'))return;
+    drag={id:e.pointerId,sx:e.clientX,sy:e.clientY,x:x,y:y};
+    canvas.setPointerCapture(e.pointerId);canvas.classList.add('dragging');
+  });
+  canvas.addEventListener('pointermove',function(e){
+    if(!drag||drag.id!==e.pointerId)return;
+    x=drag.x+e.clientX-drag.sx;y=drag.y+e.clientY-drag.sy;moved=true;apply();
+  });
+  function endDrag(e){if(drag&&drag.id===e.pointerId){drag=null;canvas.classList.remove('dragging');}}
+  canvas.addEventListener('pointerup',endDrag);
+  canvas.addEventListener('pointercancel',endDrag);
+  document.querySelectorAll('[data-zoom]').forEach(function(button){
     button.addEventListener('click',function(){
-      var view=button.getAttribute('data-view');
-      buttons.forEach(function(b){b.setAttribute('aria-pressed',String(b===button));});
-      document.getElementById('canvas').hidden=view!=='canvas';
-      document.getElementById('flow').hidden=view!=='flow';
-      if(view==='canvas')fit();
+      var action=button.getAttribute('data-zoom');
+      if(action==='in')zoomCenter(1.25);
+      else if(action==='out')zoomCenter(0.8);
+      else fit();
     });
   });
+  window.addEventListener('resize',function(){if(!moved)fit();});
+  var views=document.querySelectorAll('[data-view]');
+  views.forEach(function(button){
+    button.addEventListener('click',function(){
+      var view=button.getAttribute('data-view');
+      views.forEach(function(b){b.setAttribute('aria-pressed',String(b===button));});
+      canvas.hidden=view!=='canvas';
+      document.getElementById('flow').hidden=view!=='flow';
+      if(view==='canvas'&&!moved)fit();
+    });
+  });
+  fit();
 })();
 </script>
 </body>
