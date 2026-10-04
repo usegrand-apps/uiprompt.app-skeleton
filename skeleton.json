@@ -1,7 +1,7 @@
 {
   "generator": "uiprompt",
   "name": "uiprompt.app-skeleton",
-  "updatedAt": "2026-10-04T16:54:45.986Z",
+  "updatedAt": "2026-10-04T18:28:07.778Z",
   "folders": [
     {
       "folderId": "476abfb8-24fc-4b22-9a2a-4b45da509e09",
@@ -11,16 +11,284 @@
   ],
   "frames": [
     {
-      "frameId": "d0876537-ed5d-42c3-b136-1c9841afc177",
-      "name": "/",
+      "frameId": "0b0bb8d0-593b-4ed0-bef0-dbf134ab22fd",
+      "name": "Frame 1",
       "folderId": "476abfb8-24fc-4b22-9a2a-4b45da509e09",
-      "x": 48,
-      "y": 48,
-      "width": 1440,
-      "height": 900,
+      "x": 297,
+      "y": 124,
+      "width": 848,
+      "height": 448,
       "order": 0,
-      "blocks": []
+      "blocks": [
+        {
+          "blockId": "401f3db7-4760-4c33-9d8e-6800c22a4bf9",
+          "title": "Hero Section",
+          "summary": "",
+          "x": 24,
+          "y": 24,
+          "width": 800,
+          "height": 400,
+          "order": 0,
+          "children": [
+            {
+              "blockId": "ec8004a6-0c28-4271-9c35-bbd8a3e93e2d",
+              "title": "Headline",
+              "summary": "",
+              "x": 40,
+              "y": 60,
+              "width": 500,
+              "height": 80,
+              "order": 0,
+              "children": []
+            },
+            {
+              "blockId": "73f78f59-56f0-4e26-acd8-d2b5eeb657ea",
+              "title": "Subheadline",
+              "summary": "",
+              "x": 40,
+              "y": 160,
+              "width": 460,
+              "height": 60,
+              "order": 1,
+              "children": []
+            },
+            {
+              "blockId": "69ad289f-37f4-4a1b-a6ca-9f83aa4f7dd0",
+              "title": "Actions",
+              "summary": "",
+              "x": 40,
+              "y": 240,
+              "width": 300,
+              "height": 48,
+              "order": 2,
+              "children": [
+                {
+                  "blockId": "7958e5d5-a140-4c70-bac8-ae6e416e3b97",
+                  "title": "Primary Button",
+                  "summary": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 140,
+                  "height": 48,
+                  "order": 0,
+                  "children": []
+                },
+                {
+                  "blockId": "dc05641d-3e78-4e42-99aa-b85410ea39eb",
+                  "title": "Secondary Button",
+                  "summary": "",
+                  "x": 160,
+                  "y": 0,
+                  "width": 140,
+                  "height": 48,
+                  "order": 1,
+                  "children": []
+                }
+              ]
+            },
+            {
+              "blockId": "9276de4f-9deb-484d-928f-ee22b8b5086e",
+              "title": "Hero Image",
+              "summary": "",
+              "x": 540,
+              "y": 60,
+              "width": 220,
+              "height": 280,
+              "order": 3,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "frameId": "52f57baf-db79-47bd-8f9a-fa08a6a560b7",
+      "name": "Frame 2",
+      "folderId": "476abfb8-24fc-4b22-9a2a-4b45da509e09",
+      "x": 297,
+      "y": 622,
+      "width": 848,
+      "height": 548,
+      "order": 1,
+      "blocks": [
+        {
+          "blockId": "912f0c31-7821-4729-8676-13e410f3ffa4",
+          "title": "Features Section",
+          "summary": "",
+          "x": 24,
+          "y": 24,
+          "width": 800,
+          "height": 500,
+          "order": 0,
+          "children": [
+            {
+              "blockId": "e62289e6-0977-4949-a508-e3c373a5fca4",
+              "title": "Section Heading",
+              "summary": "",
+              "x": 40,
+              "y": 40,
+              "width": 720,
+              "height": 50,
+              "order": 0,
+              "children": []
+            },
+            {
+              "blockId": "6f0fb541-b626-48d0-aabd-f5be0b4e90ab",
+              "title": "Features Grid",
+              "summary": "",
+              "x": 40,
+              "y": 120,
+              "width": 720,
+              "height": 340,
+              "order": 1,
+              "children": [
+                {
+                  "blockId": "65890a80-2b10-4db9-a6f4-3d907d899bde",
+                  "title": "Feature 1",
+                  "summary": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 150,
+                  "order": 0,
+                  "children": []
+                },
+                {
+                  "blockId": "671c553e-b658-4599-b564-972437a316f4",
+                  "title": "Feature 2",
+                  "summary": "",
+                  "x": 250,
+                  "y": 0,
+                  "width": 220,
+                  "height": 150,
+                  "order": 1,
+                  "children": []
+                },
+                {
+                  "blockId": "124e5f87-d5fd-4305-a0b7-a7f4ee0d8879",
+                  "title": "Feature 3",
+                  "summary": "",
+                  "x": 500,
+                  "y": 0,
+                  "width": 220,
+                  "height": 150,
+                  "order": 2,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "frameId": "17289ad5-ce95-4496-8b49-b717c248d173",
+      "name": "Frame 3",
+      "folderId": "476abfb8-24fc-4b22-9a2a-4b45da509e09",
+      "x": 1339,
+      "y": 572,
+      "width": 988,
+      "height": 320,
+      "order": 2,
+      "blocks": [
+        {
+          "blockId": "a0e6e6c9-669f-4c1d-827c-63b68c1a3ca6",
+          "title": "CTA Banner",
+          "summary": "",
+          "x": 24,
+          "y": 24,
+          "width": 940,
+          "height": 220,
+          "order": 0,
+          "children": [
+            {
+              "blockId": "4c29fc04-ec99-439d-932e-691e2e92e1f7",
+              "title": "CTA Text",
+              "summary": "",
+              "x": 40,
+              "y": 70,
+              "width": 520,
+              "height": 54,
+              "order": 0,
+              "children": []
+            },
+            {
+              "blockId": "ea60bc71-fd55-40f7-b89d-41a8a23aa6e8",
+              "title": "CTA Button",
+              "summary": "",
+              "x": 700,
+              "y": 82,
+              "width": 180,
+              "height": 44,
+              "order": 1,
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "frameId": "0b36fee3-1dfe-4c94-94e1-2d9986df3670",
+      "name": "Frame 4",
+      "folderId": "476abfb8-24fc-4b22-9a2a-4b45da509e09",
+      "x": 1869,
+      "y": 1065,
+      "width": 1028,
+      "height": 608,
+      "order": 3,
+      "blocks": [
+        {
+          "blockId": "b1a0ae00-1b2d-401e-990a-b2628099d7b8",
+          "title": "Pricing Section",
+          "summary": "",
+          "x": 24,
+          "y": 24,
+          "width": 980,
+          "height": 560,
+          "order": 0,
+          "children": [
+            {
+              "blockId": "5790be05-84b5-45e1-b3e4-959ac61acedf",
+              "title": "Pricing Heading",
+              "summary": "",
+              "x": 40,
+              "y": 36,
+              "width": 760,
+              "height": 48,
+              "order": 0,
+              "children": []
+            },
+            {
+              "blockId": "a1e11250-fa7a-4155-b917-d9c6cb8fd087",
+              "title": "Plans Grid",
+              "summary": "",
+              "x": 40,
+              "y": 110,
+              "width": 900,
+              "height": 410,
+              "order": 1,
+              "children": []
+            }
+          ]
+        }
+      ]
     }
   ],
-  "connections": []
+  "connections": [
+    {
+      "connectionId": "1272cba8-15bf-4e3d-8911-4eb49d82b32d",
+      "sourceFrameId": "0b0bb8d0-593b-4ed0-bef0-dbf134ab22fd",
+      "targetFrameId": "52f57baf-db79-47bd-8f9a-fa08a6a560b7"
+    },
+    {
+      "connectionId": "b139f3b1-ec8f-4089-9fee-14fb318cc92f",
+      "sourceFrameId": "52f57baf-db79-47bd-8f9a-fa08a6a560b7",
+      "targetFrameId": "17289ad5-ce95-4496-8b49-b717c248d173"
+    },
+    {
+      "connectionId": "4b4c2536-7852-4bf6-ac13-3bbe21e2c610",
+      "sourceFrameId": "17289ad5-ce95-4496-8b49-b717c248d173",
+      "targetFrameId": "0b36fee3-1dfe-4c94-94e1-2d9986df3670"
+    }
+  ]
 }

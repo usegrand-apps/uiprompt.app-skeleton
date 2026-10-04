@@ -93,7 +93,61 @@ The following layout compositions are BANNED unless explicitly specified in a fr
 </design_philosophy>
 
 <ui_frames>
-# / [order: 0]
+# Frame 1 [order: 0]
 
+- **Hero Section** [x: 24, y: 24, order: 0]
+  - **Prompt:** A dominant hero section with a bold headline, supporting subtext, and clear call-to-action buttons.
+  - **Headline** [x: 40, y: 60, order: 0]
+    - **Prompt:** Main catchy headline for the hero section.
+    - **Visual Weight:** HERO — dominant focal point — largest type, most space, maximum contrast
+    - **Typography Spec:** 64px / 800 / tracking-tight
+  - **Subheadline** [x: 40, y: 160, order: 1]
+    - **Prompt:** A short descriptive paragraph supporting the main headline.
+    - **Visual Weight:** SECONDARY — supporting detail — reduced size, weight, or contrast relative to primary
+  - **Actions** [x: 40, y: 240, order: 2]
+    - **Prompt:** Primary and secondary CTA buttons.
+    - **Primary Button** [x: 0, y: 0, order: 0]
+      - **Type:** primary
+      - **Prompt:** Main call to action.
+    - **Secondary Button** [x: 160, y: 0, order: 1]
+      - **Type:** secondary
+      - **Prompt:** Secondary action.
+  - **Hero Image** [x: 540, y: 60, order: 3]
+    - **Prompt:** Placeholder for a prominent hero illustration or screenshot.
+
+# Frame 2 [order: 1]
+
+- **Features Section** [x: 24, y: 24, order: 0]
+  - **Prompt:** A grid of feature highlights with icons and text.
+  - **Section Heading** [x: 40, y: 40, order: 0]
+    - **Prompt:** Everything you need to succeed
+    - **Layout Hint:** centered
+  - **Features Grid** [x: 40, y: 120, order: 1]
+    - **Prompt:** 3-column grid of feature cards.
+    - **Feature 1** [x: 0, y: 0, order: 0]
+      - **Prompt:** Feature card with icon, title and description.
+    - **Feature 2** [x: 250, y: 0, order: 1]
+      - **Prompt:** Feature card with icon, title and description.
+    - **Feature 3** [x: 500, y: 0, order: 2]
+      - **Prompt:** Feature card with icon, title and description.
+
+# Frame 3 [order: 2]
+
+- **CTA Banner** [x: 24, y: 24, order: 0]
+  - **Prompt:** A high contrast call-to-action strip with title and button.
+  - **CTA Text** [x: 40, y: 70, order: 0]
+    - **Prompt:** Ready to launch your next project?
+  - **CTA Button** [x: 700, y: 82, order: 1]
+    - **Type:** primary
+    - **Prompt:** Start free trial
+
+# Frame 4 [order: 3]
+
+- **Pricing Section** [x: 24, y: 24, order: 0]
+  - **Prompt:** Three-column pricing plans with monthly/yearly labels and CTA.
+  - **Pricing Heading** [x: 40, y: 36, order: 0]
+    - **Prompt:** Simple, transparent pricing
+  - **Plans Grid** [x: 40, y: 110, order: 1]
+    - **Prompt:** Three plan cards: Starter, Pro and Business.
 
 </ui_frames>
