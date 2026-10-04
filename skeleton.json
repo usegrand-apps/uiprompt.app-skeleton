@@ -1,0 +1,87 @@
+{
+  "generator": "uiprompt",
+  "name": "uiprompt.app",
+  "updatedAt": "2026-10-04T11:17:48.159Z",
+  "frames": [
+    {
+      "frameId": "46a5bfb5-eeaa-4a80-8e36-5d6f57679461",
+      "name": "Frame 1",
+      "x": -365,
+      "y": -298,
+      "width": 848,
+      "height": 548,
+      "order": 0,
+      "blocks": [
+        {
+          "blockId": "da4c4d50-114c-42ce-ba2a-50eef0ee4803",
+          "title": "Features Section",
+          "summary": "",
+          "x": 24,
+          "y": 24,
+          "width": 800,
+          "height": 500,
+          "order": 0,
+          "children": [
+            {
+              "blockId": "2d6e48b9-b796-4831-b66d-cf8f9f468962",
+              "title": "Section Heading",
+              "summary": "",
+              "x": 40,
+              "y": 40,
+              "width": 720,
+              "height": 50,
+              "order": 0,
+              "children": []
+            },
+            {
+              "blockId": "48f5197a-6f98-4289-a117-55dfc69e29a4",
+              "title": "Features Grid",
+              "summary": "",
+              "x": 40,
+              "y": 120,
+              "width": 720,
+              "height": 340,
+              "order": 1,
+              "children": [
+                {
+                  "blockId": "f9fd27e7-0965-4cef-8275-13af108017bb",
+                  "title": "Feature 1",
+                  "summary": "",
+                  "x": 0,
+                  "y": 0,
+                  "width": 220,
+                  "height": 150,
+                  "order": 0,
+                  "children": []
+                },
+                {
+                  "blockId": "c9d58641-975b-4c27-bb3e-eb5ae4065026",
+                  "title": "Feature 2",
+                  "summary": "",
+                  "x": 250,
+                  "y": 0,
+                  "width": 220,
+                  "height": 150,
+                  "order": 1,
+                  "children": []
+                },
+                {
+                  "blockId": "0c94a9a2-c8e0-4078-a94a-eff127780883",
+                  "title": "Feature 3",
+                  "summary": "",
+                  "x": 500,
+                  "y": 0,
+                  "width": 220,
+                  "height": 150,
+                  "order": 2,
+                  "children": []
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "connections": []
+}
