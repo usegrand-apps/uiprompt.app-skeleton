@@ -12,8 +12,7 @@ html,body{margin:0;background:#fff}
 body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:#09090b}
 .page-fit{margin:0 auto;overflow:hidden}
 .page-col{display:flex;flex-direction:column;align-items:center;transform-origin:0 0}
-.frame{position:relative;flex:none;background:#fff;border:1px solid rgba(212,212,216,.6);border-bottom:0;overflow:hidden}
-.frame:last-child{border-bottom:1px solid rgba(212,212,216,.6)}
+.section{position:relative;flex:none;overflow:hidden}
 .block,.group{position:absolute;border-radius:6px}
 .block{overflow:hidden;background:#f4f4f5;border:1px solid rgba(228,228,231,.6)}
 .title{margin:0;padding:8px 12px 0;font-size:13px;font-weight:600;line-height:1.2;color:#3f3f46;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -21,7 +20,7 @@ body{font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-se
 </style>
 </head>
 <body>
-<div class="page-fit"><div class="page-col" data-width="848" data-height="548"><div class="frame" style="width:848px;height:548px"><div class="group" style="left:24px;top:24px;width:800px;height:500px"><div class="block" style="left:40px;top:40px;width:720px;height:50px"><p class="title">Section Heading</p></div><div class="group" style="left:40px;top:120px;width:720px;height:340px"><div class="block" style="left:0px;top:0px;width:220px;height:150px"><p class="title">Feature 1</p></div><div class="block" style="left:250px;top:0px;width:220px;height:150px"><p class="title">Feature 2</p></div><div class="block" style="left:500px;top:0px;width:220px;height:150px"><p class="title">Feature 3</p></div></div></div></div></div></div>
+<main class="page-fit"><div class="page-col" data-width="848" data-height="548"><section class="section" aria-label="Frame 1" style="width:848px;height:548px"><div class="group" style="left:24px;top:24px;width:800px;height:500px"><div class="block" style="left:40px;top:40px;width:720px;height:50px"><p class="title">Section Heading</p></div><div class="group" style="left:40px;top:120px;width:720px;height:340px"><div class="block" style="left:0px;top:0px;width:220px;height:150px"><p class="title">Feature 1</p></div><div class="block" style="left:250px;top:0px;width:220px;height:150px"><p class="title">Feature 2</p></div><div class="block" style="left:500px;top:0px;width:220px;height:150px"><p class="title">Feature 3</p></div></div></div></section></div></main>
 <script>
 (function(){
   var col=document.querySelector('.page-col');if(!col)return;
