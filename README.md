@@ -1,4 +1,4 @@
-# uiprompt.app — UI skeleton
+# uiprompt.app-skeleton — UI skeleton
 
 Live skeleton: https://usegrand-apps.github.io/uiprompt.app-skeleton/
 
